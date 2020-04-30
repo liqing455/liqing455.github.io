@@ -300,7 +300,31 @@
       
         
           
-            
+            <h2 id="一、数据备份"><a href="#一、数据备份" class="headerlink" title="一、数据备份"></a>一、数据备份</h2><p>数据的备份是通过<strong>mysqldump</strong>命令来实现的，导出的表结构和数据保存为.sql脚本</p>
+<p>mysqldump命令的基本用法：</p>
+<p>直接在命令行执行mysqldump -u username -p password dbname table1 table2 … &gt; /tmp/database_bk.sql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -proot  <span class="built_in">test</span> my_table &gt; /tmp/my_table.sql</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li>username：登录用户名</li>
+</ul>
+<ul>
+<li><p>password：登录密码</p>
+</li>
+<li><p>dbname：数据库名</p>
+</li>
+<li><p>table1 table2：表名，为可选参数，可传入0到多个表名</p>
+</li>
+<li><p>/tmp/database_bk.sql：绝对路劲+备份后的文件名</p>
+</li>
+</ul>
+<h2 id="二、数据恢复"><a href="#二、数据恢复" class="headerlink" title="二、数据恢复"></a>二、数据恢复</h2><p>数据的恢复是通过执行<strong>source</strong>命令来实现的</p>
+<p>首先登陆mysql：mysql -u username -p password</p>
+<p>然后选定数据库名:use dbname 数据库名为之前执行mysqldump命令时使用的数据库名</p>
+<p>然后恢复备份的数据：source /tmp/database_bk.sql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -proot</span><br><span class="line">use <span class="built_in">test</span></span><br><span class="line"><span class="built_in">source</span> /tmp/database_bk.sql</span><br></pre></td></tr></table></figure>
+
           
         
       
